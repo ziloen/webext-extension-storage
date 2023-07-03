@@ -1,9 +1,9 @@
 {
-  "name": "vitesse-webext",
+  "name": "webext-storage-devtool",
   "displayName": "WebExt Storage Devtool",
   "version": "0.0.1",
   "private": true,
-  "description": "[description]",
+  "description": "A devtool for inspecting the storage of a web extension",
   "scripts": {
     "dev": "npm run clear && cross-env NODE_ENV=development run-p dev:*",
     "dev:prepare": "esno scripts/prepare.ts",
@@ -24,6 +24,7 @@
     "test": "vitest test"
   },
   "devDependencies": {
+    "@crxjs/vite-plugin": "2.0.0-beta.18",
     "@ffflorian/jszip-cli": "^3.4.1",
     "@iconify/json": "^2.2.85",
     "@types/fs-extra": "^11.0.1",
@@ -108,6 +109,9 @@
   },
   "dependencies": {
     "@vueuse/rxjs": "^10.2.1",
+    "@wai-ri/core": "^0.0.99",
+    "element-plus": "^2.3.7",
+    "lodash-es": "^4.17.21",
     "rxjs": "^7.8.1"
   }
 }
