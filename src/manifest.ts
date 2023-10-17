@@ -1,7 +1,7 @@
 import fs from 'fs-extra'
 import type { Manifest } from 'webextension-polyfill'
 import type PkgType from '../package.json'
-import { isDev, port, r } from '../scripts/utils'
+import { isDev, r } from '../scripts/utils'
 
 export async function getManifest() {
   const pkg = await fs.readJSON(r('package.json')) as typeof PkgType
@@ -17,10 +17,12 @@ export async function getManifest() {
     permissions: [
       'tabs',
       'storage',
+      'devtools',
       'activeTab',
-      // 'omnibox',
       'clipboardRead',
       'clipboardWrite',
+    ],
+    host_permissions: [
       '<all_urls>',
     ],
     web_accessible_resources: [
@@ -32,19 +34,7 @@ export async function getManifest() {
   }
 
   if (isDev) {
-    // for content script, as browsers will cache them for each reload,
-    // we use a background script to always inject the latest version
-    // see src/background/contentScriptHMR.ts
-    delete manifest.content_scripts
     manifest.permissions?.push('webNavigation')
-
-    // this is required on dev for Vite script to load
-    // manifest.content_security_policy
-    manifest.content_security_policy = {
-      extension_pages: `script-src 'self' http://localhost:${port}; object-src 'self'`,
-      sandbox: `sandbox allow-scripts; script-src 'self' http://localhost:${port}; object-src 'self'; connect-src ws://localhost:${port}`,
-    }
-
   }
 
   return manifest

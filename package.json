@@ -26,21 +26,21 @@
   "devDependencies": {
     "@crxjs/vite-plugin": "2.0.0-beta.18",
     "@ffflorian/jszip-cli": "^3.4.1",
-    "@iconify/json": "^2.2.123",
+    "@iconify/json": "^2.2.129",
     "@types/fs-extra": "^11.0.2",
-    "@types/node": "^20.8.2",
+    "@types/node": "^20.8.6",
     "@types/webextension-polyfill": "^0.10.4",
     "@unocss/reset": "^0.56.5",
     "@vitejs/plugin-vue": "^4.4.0",
     "@volar-plugins/prettyhtml": "^2.0.0",
     "@vue/test-utils": "^2.4.1",
-    "@vueuse/core": "^10.4.1",
-    "@ziloen/eslint-config": "^0.0.109",
-    "@ziloen/eslint-config-format": "^0.0.109",
+    "@vueuse/core": "^10.5.0",
+    "@ziloen/eslint-config-format": "^0.0.110",
+    "@ziloen/eslint-config-vue": "^0.0.110",
     "chokidar": "^3.5.3",
     "cross-env": "^7.0.3",
     "crx": "^5.0.1",
-    "eslint": "^8.50.0",
+    "eslint": "^8.51.0",
     "esno": "^0.17.0",
     "fs-extra": "^11.1.1",
     "jsdom": "^22.1.0",
@@ -49,11 +49,11 @@
     "rimraf": "^5.0.5",
     "typescript": "^5.2.2",
     "unocss": "^0.56.5",
-    "unocss-preset-ziloen": "^0.0.2",
+    "unocss-preset-ziloen": "^0.0.4",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-icons": "^0.17.0",
     "unplugin-vue-components": "^0.25.2",
-    "vite": "^4.4.9",
+    "vite": "^4.4.11",
     "vitest": "^0.34.6",
     "vue": "^3.3.4",
     "web-ext": "^7.8.0",
@@ -65,16 +65,11 @@
       "react/no-unknown-property": 0
     },
     "extends": [
-      "@ziloen",
+      "@ziloen/eslint-config-vue",
       "@ziloen/eslint-config-format"
     ],
     "parserOptions": {
       "project": "./tsconfig.json"
-    },
-    "settings": {
-      "react": {
-        "version": "18"
-      }
     },
     "ignorePatterns": [
       "dist",
@@ -109,9 +104,9 @@
     }
   },
   "dependencies": {
-    "@vueuse/rxjs": "^10.4.1",
+    "@vueuse/rxjs": "^10.5.0",
     "@wai-ri/core": "^0.0.101",
-    "element-plus": "^2.3.14",
+    "element-plus": "^2.4.0",
     "lodash-es": "^4.17.21",
     "rxjs": "^7.8.1"
   }

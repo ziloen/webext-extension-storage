@@ -4,10 +4,8 @@
       <octicon:chevron-right-24 :class="['shrink-0 text-white', { 'opacity-0': isDataPrimitive }]" />
       <div class="shrink-0">{{ propName }}:</div>
 
-      <div
-        class="shrink text-ellipsis whitespace-nowrap break-all overflow-hidden" :title="dataLabel"
-        :style="{ color: dataColor }"
-      >
+      <div class="shrink text-ellipsis whitespace-nowrap break-all overflow-hidden" :title="dataLabel"
+        :style="{ color: dataColor }">
         {{ dataLabel }}
       </div>
     </div>
@@ -17,7 +15,7 @@
         <DataType v-for="(d, i) of data" :key="i" :prop-name="i" :data="d" />
       </template>
       <template v-else>
-        <DataType v-for="[k, v] of Object.entries(data)" :key="k" :prop-name="k" :data="v" />
+        <DataType v-for="[k, v] of Object.entries(data as object)" :key="k" :prop-name="k" :data="v" />
       </template>
     </div>
   </div>
@@ -26,7 +24,8 @@
 
 
 <script lang="ts" setup>
-import { isPrimitive } from '~/logic'
+import { isPrimitive } from '@wai-ri/core'
+
 
 const props = defineProps<{
   propName: string | number
