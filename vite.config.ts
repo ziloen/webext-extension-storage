@@ -82,7 +82,6 @@ export default defineConfig(({ command }) => ({
     },
     rollupOptions: {
       input: {
-        background: r('src/background/index.html'),
         devtools: r('src/devtools/index.html'),
         panel: r('src/devtools/panel/index.html'),
       }

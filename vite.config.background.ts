@@ -1,7 +1,4 @@
-import glob from 'fast-glob'
-import { sep } from 'node:path'
 import { defineConfig } from 'vite'
-import packageJson from './package.json'
 import { isDev, r } from './scripts/utils'
 import { sharedConfig } from './vite.config'
 
@@ -12,25 +9,27 @@ export default defineConfig({
     __DEV__: isDev,
     // https://github.com/vitejs/vite/issues/9320
     // https://github.com/vitejs/vite/issues/9186
-    'process.env.NODE_ENV': JSON.stringify(isDev ? 'development' : 'production')
+    'process.env.NODE_ENV': JSON.stringify(isDev ? 'development' : 'production'),
   },
   build: {
     watch: isDev
       ? { exclude: ['node_modules/**', '/__uno.css'] }
       : null,
-    outDir: r('extension/dist/contentScripts'),
+    outDir: r('extension/dist/background'),
+    reportCompressedSize: false,
     cssCodeSplit: false,
     emptyOutDir: false,
     sourcemap: isDev ? 'inline' : false,
     lib: {
-      entry: glob.sync(r('src/contentScripts', '*.ts').replaceAll(sep, '/')),
-      name: packageJson.name,
-      formats: ['es']
+      entry: r('src/background/main.ts'),
+      // name: packageJson.name,
+      formats: ['es'],
     },
     rollupOptions: {
       output: {
-        entryFileNames: '[name].js',
-      }
-    }
-  }
+        entryFileNames: 'index.js',
+        extend: true,
+      },
+    },
+  },
 })

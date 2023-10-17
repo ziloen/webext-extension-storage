@@ -1,7 +1,8 @@
-const prettyhtml = require('@volar-plugins/prettyhtml')
-
 module.exports = {
-  plugins: [
-    prettyhtml({ printWidth: 120 })
-  ]
+  services: [
+    require('volar-service-prettyhtml').default({
+      printWidth: 120,
+      wrapAttributes: false
+    }),
+  ],
 }
