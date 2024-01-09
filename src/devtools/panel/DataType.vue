@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col w-full">
+  <div class="flex flex-col w-full text-14px leading-22px focus:bg-white/5" tabindex="0">
     <div
       :class="[
-        'flex items-center w-full gap-2 text-#75bfe9',
+        'flex items-center w-full gap-2 text-#ddd',
         !isDataPrimitive && 'cursor-pointer'
       ]"
       @click="onExpandClick"

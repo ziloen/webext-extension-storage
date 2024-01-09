@@ -1,3 +1,4 @@
+import presetWebFonts from '@unocss/preset-web-fonts'
 import {
   defineConfig,
   presetIcons,
@@ -10,7 +11,13 @@ export default defineConfig({
   presets: [
     presetUno(),
     presetZiloen(),
-    presetIcons()
+    presetWebFonts({
+      provider: "google",
+      fonts: {
+        mono: ["Fira Code", "JetBrains Mono"]
+      }
+    }),
+    presetIcons(),
   ],
   transformers: [
     transformerDirectives()

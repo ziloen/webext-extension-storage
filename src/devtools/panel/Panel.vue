@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full flex flex-col px-2 py-2 bg-#181818">
+  <div class="w-full h-full flex flex-col px-2 py-2 bg-#1e2227">
     <div class="text-#c5c5c5">
       <!-- TODO: local / sync switch -->
       <div class="flex-align gap-2">
@@ -18,7 +18,7 @@
       <!-- TODO: filter & search & order -->
       <!-- <input /> -->
     </div>
-    <div class="flex flex-col h-0 grow of-y-auto py-2">
+    <div class="flex flex-col h-0 grow of-y-auto py-2 font-mono">
       <DataType
         v-for="[k, v] of Object.entries(currentArea === 'local' ? local : sync)"
         :key="k"
