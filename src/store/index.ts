@@ -52,9 +52,14 @@ export const useExpandState = defineStore('expand-state', () => {
     }
   }
 
+  function clear() {
+    expanded.value = {}
+  }
+
   return {
     expanded,
     setExpandState,
-    getExpandState
+    getExpandState,
+    clear,
   }
 })

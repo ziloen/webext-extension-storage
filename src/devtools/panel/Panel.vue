@@ -1,11 +1,19 @@
 <template>
-  <div class="w-full h-full flex flex-col px-2 py-2">
-    <div>
+  <div class="w-full h-full flex flex-col px-2 py-2 bg-#181818">
+    <div class="text-#c5c5c5">
       <!-- TODO: local / sync switch -->
       <div class="flex-align gap-2">
         <button class="btn" @click="currentArea = 'local'">storage.local</button>
         <button class="btn" @click="currentArea = 'sync'">storage.sync</button>
         <span>{{ currentArea }}</span>
+
+        <div
+          class="cursor-pointer rounded-4px hover:bg-white/20 p-2px active:opacity-85"
+          @click="expandedStore.clear()"
+          title="Collapse All"
+        >
+          <IconCollapseAll class="text-16px" />
+        </div>
       </div>
       <!-- TODO: filter & search & order -->
       <!-- <input /> -->
@@ -25,12 +33,18 @@
 
 
 <script lang="ts" setup>
+import DataType from './DataType.vue'
+
 import Browser from 'webextension-polyfill'
 import { inspectedEval } from '~/logic'
-import DataType from './DataType.vue'
+import { useExpandState } from '~/store'
+import IconCollapseAll from "~icons/codicon/collapse-all"
+
+const expandedStore = useExpandState()
 
 const local = ref<Record<string, any>>({})
 const sync = ref<Record<string, any>>({})
+
 
 const currentArea = ref<AreaName>('local')
 
