@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full text-14px leading-22px focus:bg-white/5" tabindex="0">
+  <div class="flex flex-col w-full text-14px leading-22px focus:bg-white/3" tabindex="0">
     <div
       :class="[
         'flex items-center w-full gap-2 text-#ddd',
