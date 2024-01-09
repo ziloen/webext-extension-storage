@@ -2,7 +2,7 @@
   <div class="flex flex-col w-full text-14px leading-22px focus:bg-white/3" tabindex="0">
     <div
       :class="[
-        'flex items-center w-full gap-2 text-#ddd',
+        'flex items-center w-full gap-2 text-#cfd3dc',
         !isDataPrimitive && 'cursor-pointer'
       ]"
       @click="onExpandClick"
