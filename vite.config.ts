@@ -4,9 +4,7 @@ import Vue from '@vitejs/plugin-vue'
 import { dirname, relative } from 'node:path'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
-import Components from 'unplugin-vue-components/vite'
 import type { UserConfig } from 'vite'
 import { defineConfig } from 'vite'
 import { isDev, port, r } from './scripts/utils'
@@ -68,6 +66,7 @@ export default defineConfig(({ command }) => ({
   base: command === 'serve' ? `http://localhost:${port}/` : '/dist/',
   server: {
     port,
+    strictPort: true,
     hmr: {
       host: 'localhost'
     }

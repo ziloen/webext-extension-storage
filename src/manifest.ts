@@ -1,7 +1,7 @@
 import fs from 'fs-extra'
 import type { Manifest } from 'webextension-polyfill'
 import type PkgType from '../package.json'
-import { isDev, r } from '../scripts/utils'
+import { isDev, port, r } from '../scripts/utils'
 
 export async function getManifest() {
   const pkg = await fs.readJSON(r('package.json')) as typeof PkgType
@@ -15,12 +15,12 @@ export async function getManifest() {
     description: pkg.description,
     devtools_page: './dist/devtools/index.html',
     permissions: [
-      'tabs',
-      'storage',
-      'devtools',
       'activeTab',
       'clipboardRead',
       'clipboardWrite',
+      // 'devtools',
+      'storage',
+      'tabs',
     ],
     host_permissions: [
       '<all_urls>',
@@ -30,7 +30,12 @@ export async function getManifest() {
         matches: ['<all_urls>'],
         resources: ['dist/contentScripts/style.css'],
       }
-    ]
+    ],
+    content_security_policy: {
+      extension_pages: isDev
+        ? `script-src 'self' http://localhost:${port}; object-src 'self'`
+        : "script-src 'self'; object-src 'self'",
+    }
   }
 
   if (isDev) {

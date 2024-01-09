@@ -1,15 +1,24 @@
 <template>
-  <div>
-    <!-- TODO: local / sync switch -->
+  <div class="w-full h-full flex flex-col px-2 py-2">
     <div>
-      <button class="btn" @click="currentArea = 'local'">storage.local</button>
-      <button class="btn" @click="currentArea = 'sync'">storage.sync</button>
-      <span>{{ currentArea }}</span>
+      <!-- TODO: local / sync switch -->
+      <div class="flex-align gap-2">
+        <button class="btn" @click="currentArea = 'local'">storage.local</button>
+        <button class="btn" @click="currentArea = 'sync'">storage.sync</button>
+        <span>{{ currentArea }}</span>
+      </div>
+      <!-- TODO: filter & search & order -->
+      <!-- <input /> -->
     </div>
-    <!-- TODO: filter & search & order -->
-    <!-- <input /> -->
+    <div class="flex flex-col h-0 grow of-y-auto py-2">
+      <DataType
+        v-for="[k, v] of Object.entries(currentArea === 'local' ? local : sync)"
+        :key="k"
+        :prop-name="k"
+        :data="v"
+      />
+    </div>
   </div>
-  <DataType v-for="[k, v] of Object.entries(currentArea === 'local' ? local : sync)" :key="k" :prop-name="k" :data="v" />
 </template>
 
 
