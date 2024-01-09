@@ -17,11 +17,7 @@
       />
       <div class="shrink-0">{{ propName }}:</div>
 
-      <div
-        class="shrink text-ellipsis whitespace-nowrap break-all overflow-hidden"
-        :title="dataLabel"
-        :style="{ color: dataColor }"
-      >{{ dataLabel }}</div>
+      <ValueViewer :data="data" :is-primitive="isDataPrimitive" />
     </div>
 
     <div v-if="!isDataPrimitive && expanded" class="pl-4 relative">
@@ -44,6 +40,8 @@
 </template>
 
 <script lang="ts" setup>
+import ValueViewer from './DataValueViewer.vue'
+
 import { isPrimitive } from '@wai-ri/core'
 import IconChevronRIght from '~icons/carbon/chevron-right'
 import { useExpandState } from "~/store"
@@ -65,37 +63,4 @@ function onExpandClick() {
 }
 
 const isDataPrimitive = computed(() => isPrimitive(props.data))
-const dataColor = computed(() => {
-  const data = props.data
-  if (isDataPrimitive.value) {
-    if (typeof data === 'string') return '#98c379'
-    else return '#d19a66'
-  } else if (Array.isArray(data)) {
-    return '#e5c07b'
-  } else {
-    return '#61afef'
-  }
-})
-
-const dataLabel = computed<string>(() => {
-  const data = props.data
-  if (isDataPrimitive.value) {
-    if (typeof data === 'string') return `"${data}"`
-    else return String(data)
-  } else if (Array.isArray(data)) {
-    return `Array(${data.length})`
-  } else if (data instanceof Set) {
-    return `Set[${data.size}]`
-  } else if (data instanceof Map) {
-    return `Map[${data.size}]`
-  } else if (data instanceof Date) {
-    return `Date(${data.toISOString()})`
-  } else {
-    return `Object(${Object.keys(data as object).length})`
-  }
-})
 </script>
-
-
-
-<style lang="scss" scoped></style>

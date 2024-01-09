@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 
 import Vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import { dirname, relative } from 'node:path'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -23,6 +24,8 @@ export const sharedConfig: UserConfig = {
 
   plugins: [
     Vue(),
+
+    vueJsx({}),
 
     AutoImport({
       imports: [

@@ -34,6 +34,7 @@
     "@types/webextension-polyfill": "^0.10.7",
     "@unocss/reset": "^0.58.3",
     "@vitejs/plugin-vue": "^5.0.2",
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
     "@vue/test-utils": "^2.4.3",
     "@vueuse/core": "^10.7.1",
     "@ziloen/eslint-config-format": "^0.0.110",
