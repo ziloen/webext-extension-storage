@@ -38,7 +38,7 @@
         />
       </template>
 
-      <div class="absolute h-full w-px bg-white/20 left-2 top-0"></div>
+      <div class="absolute h-full w-px bg-white/10 left-2 top-0"></div>
     </div>
   </div>
 </template>
