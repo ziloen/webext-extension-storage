@@ -1,11 +1,19 @@
 <template>
   <div class="flex flex-col w-full">
-    <div class="flex items-center w-full gap-2 text-#75bfe9" @click="onExpandClick">
+    <div
+      :class="[
+        'flex items-center w-full gap-2 text-#75bfe9',
+        !isDataPrimitive && 'cursor-pointer'
+      ]"
+      @click="onExpandClick"
+    >
       <IconChevronRIght
-        :class="['shrink-0 text-white', {
-          'opacity-0': isDataPrimitive,
-          'rotate-90': expanded,
-        }]"
+        :class="[
+          'shrink-0 text-white',
+          expanded ? 'opacity-100' : 'opacity-35',
+          isDataPrimitive && 'invisible',
+          expanded && 'rotate-90',
+        ]"
       />
       <div class="shrink-0">{{ propName }}:</div>
 
@@ -18,10 +26,16 @@
 
     <div v-if="!isDataPrimitive && expanded" class="pl-4 relative">
       <template v-if="Array.isArray(data)">
-        <DataType v-for="(d, i) of data" :key="i" :prop-name="i" :data="d" />
+        <DataType v-for="(d, i) of data" :path="[...path, i]" :key="i" :prop-name="i" :data="d" />
       </template>
       <template v-else>
-        <DataType v-for="[k, v] of Object.entries(data as object)" :key="k" :prop-name="k" :data="v" />
+        <DataType
+          v-for="[k, v] of Object.entries(data as object)"
+          :key="k"
+          :path="[...path, k]"
+          :prop-name="k"
+          :data="v"
+        />
       </template>
 
       <div class="absolute h-full w-px bg-white/20 left-2 top-0"></div>
@@ -32,16 +46,22 @@
 <script lang="ts" setup>
 import { isPrimitive } from '@wai-ri/core'
 import IconChevronRIght from '~icons/carbon/chevron-right'
+import { useExpandState } from "~/store"
 
 const props = defineProps<{
   propName: string | number
+  path: (string | number)[]
   data: unknown
 }>()
 
-const expanded = ref(false)
+const expandedStore = useExpandState()
 
-function onExpandClick(e: MouseEvent) {
-  expanded.value = !expanded.value
+const expanded = computed(() => {
+  return expandedStore.getExpandState(props.path)
+})
+
+function onExpandClick() {
+  expandedStore.setExpandState(props.path, !expanded.value)
 }
 
 const isDataPrimitive = computed(() => isPrimitive(props.data))

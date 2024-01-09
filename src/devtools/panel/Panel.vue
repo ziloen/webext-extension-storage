@@ -15,6 +15,7 @@
         v-for="[k, v] of Object.entries(currentArea === 'local' ? local : sync)"
         :key="k"
         :prop-name="k"
+        :path="[k]"
         :data="v"
       />
     </div>
@@ -32,7 +33,6 @@ const local = ref<Record<string, any>>({})
 const sync = ref<Record<string, any>>({})
 
 const currentArea = ref<AreaName>('local')
-
 
 type AreaName = 'local' | 'sync'
 
