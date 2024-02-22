@@ -38,7 +38,7 @@ import DataType from './DataType.vue'
 import Browser from 'webextension-polyfill'
 import { inspectedEval } from '~/logic'
 import { useExpandState } from '~/store'
-import IconCollapseAll from "~icons/codicon/collapse-all"
+import IconCollapseAll from '~icons/codicon/collapse-all'
 
 const expandedStore = useExpandState()
 

@@ -44,7 +44,7 @@ import ValueViewer from './DataValueViewer.vue'
 
 import { isPrimitive } from '@wai-ri/core'
 import IconChevronRIght from '~icons/carbon/chevron-right'
-import { useExpandState } from "~/store"
+import { useExpandState } from '~/store'
 
 const props = defineProps<{
   propName: string | number

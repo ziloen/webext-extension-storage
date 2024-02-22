@@ -6,7 +6,7 @@ import { dirname, relative } from 'node:path'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
-import type { UserConfig } from 'vite'
+import type { Plugin, UserConfig } from 'vite'
 import { defineConfig } from 'vite'
 import { isDev, port, r } from './scripts/utils'
 
@@ -32,12 +32,13 @@ export const sharedConfig: UserConfig = {
         'vue',
         {
           'webextension-polyfill': [
-            ['*', 'browser']
+            ['default', 'browser']
           ]
         }
       ],
-      dts: r('src/types/auto-imports.d.ts')
-    }),
+      dts: r('src/types/auto-imports.d.ts'),
+      ignoreDts: ['browser']
+    }) as Plugin,
 
     // https://github.com/antfu/unplugin-icons
     Icons(),

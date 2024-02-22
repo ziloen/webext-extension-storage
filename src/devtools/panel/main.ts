@@ -1,7 +1,7 @@
 import 'element-plus/dist/index.css'
 import '~/styles'
 
-import { createPinia } from "pinia"
+import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 import App from './Panel.vue'
 

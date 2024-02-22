@@ -12,9 +12,9 @@ export default defineConfig({
     presetUno(),
     presetZiloen(),
     presetWebFonts({
-      provider: "google",
+      provider: 'google',
       fonts: {
-        mono: ["Fira Code", "JetBrains Mono"]
+        mono: ['Fira Code', 'JetBrains Mono']
       }
     }),
     presetIcons(),
